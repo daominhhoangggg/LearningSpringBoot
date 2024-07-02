@@ -1,22 +1,26 @@
 package com.learning.springboot.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 // POJO - Plain Object Java Object
 @Entity
+@Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "productName")
     private String productName;
+    @Column(name = "productYear")
     private int productYear;
+    @Column(name = "price")
     private Double price;
+    @Column(name = "url")
     private String url;
+
     //default constructor
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String productName, int productYear, Double price, String url) {
         this.productName = productName;
