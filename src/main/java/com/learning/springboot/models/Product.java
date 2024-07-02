@@ -7,16 +7,22 @@ import jakarta.persistence.*;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "product_sequence",
+            sequenceName = "product_sequence",
+            allocationSize = 1 //increment by 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
     private Long id;
-    @Column(name = "productName")
+    @Column(nullable = false, unique = true, length = 300)
     private String productName;
-    @Column(name = "productYear")
     private int productYear;
-    @Column(name = "price")
     private Double price;
-    @Column(name = "url")
     private String url;
+    //calculated field = transient
+    @Transient
+    private int age;
 
     //default constructor
     public Product() {
