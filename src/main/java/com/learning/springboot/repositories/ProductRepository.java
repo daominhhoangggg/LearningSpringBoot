@@ -21,11 +21,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("FROM Product WHERE productName = :productName")
     List<Product> findByProductName(@Param("productName") String productName);
 
-    @Modifying
-    @Transactional
+    @Modifying          // update database
+    @Transactional      // if error -> rollback
     @Query("DELETE FROM Product WHERE id = :id")
     void deleteProductById(@Param("id") Long id);
 
-    @Query("SELECT CASE WHEN COUNT(p) > 0 THEN true ELSE false END FROM Product p where p.id = :id")
+    @Query("SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM Product where id = :id")
     boolean existsById(@Param("id") @NonNull Long id);
 }

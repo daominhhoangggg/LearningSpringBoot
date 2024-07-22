@@ -1,19 +1,26 @@
 package com.learning.springboot.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 // POJO - Plain Object Java Object
 @Entity
 @Table(name = "product")
 public class Product {
+
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    @SequenceGenerator(
-            name = "product_sequence",
-            sequenceName = "product_sequence",
-            allocationSize = 1 //increment by 1
-    )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @SequenceGenerator(
+//            name = "product_sequence",
+//            sequenceName = "product_sequence",
+//            allocationSize = 1 //increment by 1
+//    )
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
     private Long id;
     @Column(nullable = false, unique = true, length = 300)
     private String productName;
@@ -78,11 +85,11 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", productYear=" + productYear +
-                ", price=" + price +
-                ", url='" + url + '\'' +
-                '}';
+            "id=" + id +
+            ", productName='" + productName + '\'' +
+            ", productYear=" + productYear +
+            ", price=" + price +
+            ", url='" + url + '\'' +
+            '}';
     }
 }

@@ -3,7 +3,6 @@ package com.learning.springboot.controllers;
 import com.learning.springboot.models.Product;
 import com.learning.springboot.models.ResponseObject;
 import com.learning.springboot.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/v1/Products")
 public class ProductController {
-    @Autowired
-    private ProductRepository repository;
+    // Constructor Injection
+    private final ProductRepository repository;
+
+    public ProductController(ProductRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("")
     List<Product> getAllProducts() {
@@ -68,7 +71,7 @@ public class ProductController {
     ResponseEntity<ResponseObject> deleteProduct(@PathVariable Long id) {
         boolean exists = repository.existsById(id);
         if (exists) {
-            repository.deleteById(id);
+            repository.deleteProductById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Delete product successfully", "")
             );
