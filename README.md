@@ -2,13 +2,13 @@
 
 #### Get all products
 
-```http
+```
   GET /api/v1/Products
 ```
 
 #### Insert product
 
-```http
+```
   POST /api/v1/Products/insert
 ```
 
@@ -21,7 +21,7 @@
 
 #### Update product
 
-```http
+```
   PUT /api/v1/Products/{id}
 ```
 
@@ -35,13 +35,13 @@
 
 #### Delete product
 
-```http
+```
   DELETE /api/v1/Products/{id}
 ```
 
 #### Upload Image
 
-```http
+```
   POST /api/v1/FileUpload/files/{id}
 ```
 
