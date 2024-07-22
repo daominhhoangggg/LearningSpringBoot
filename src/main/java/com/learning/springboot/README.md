@@ -2,7 +2,7 @@
 
 #### Get all products
 
-``` 
+```
   GET /api/v1/Products
 ```
 
