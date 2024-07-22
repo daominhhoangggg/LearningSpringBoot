@@ -51,6 +51,6 @@
 
 #### Read Image
 
-```http
+```
   GET /api/v1/FileUpload/files/{id}
 ```
